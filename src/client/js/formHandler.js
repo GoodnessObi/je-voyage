@@ -1,23 +1,20 @@
 // Personal API Key for OpenWeatherMap API
-const apiKey = '';
-
-// Event listener to add function to existing HTML DOM element
-document.getElementById('generate').addEventListener('click', performAction);
+const apiKey = 'ebbd2f57d5cadca45a8ea3aa17c0b066';
 
 /* Function called by event listener */
 function performAction (){
   const zipCode = document.getElementById('zip').value;
   const feeling = document.getElementById('feelings').value;
   
-  clearRecentEntry();
+  Client.clearRecentEntry();
   getWeather(apiKey, zipCode)
     .then(function(data) {
       return postData('/', {...data, feeling})
     })
     .then(function(){
-      return updateUI();
+      return Client.updateUI();
     }).then(function() {
-      return clearInputFields();
+      return Client.clearInputFields();
     })
     .catch(function(error) {
       document.getElementById('error').innerHTML = error.message;
@@ -49,27 +46,6 @@ async function postData ( url = '', data = {}) {
 
   return response;
 }
-
-
-/* Function to GET Project Data */
-async function updateUI() {
-  const response = await fetch('/all');
-  try {
-      const newData = await response.json();
-      const dataArray = newData.data
-      const recentEntry = dataArray.pop();
-      const date = getDate();
-
-      document.getElementById('date').innerHTML = date;
-      document.getElementById('location').innerHTML = recentEntry.country;
-      document.getElementById('temp').innerHTML = recentEntry.temp;
-      document.getElementById('feels').innerHTML = recentEntry.feels;
-      document.getElementById('content').innerHTML = recentEntry.feeling;
-      
-  } catch(error) {
-      console.log('error', error);
-  }
-}
  
 function getDate() {
   let d = new Date();
@@ -77,16 +53,9 @@ function getDate() {
   return newDate;
 }
 
-function clearInputFields() {
-  document.getElementById('zip').value = '';
-  document.getElementById('feelings').value = '';
-}
-
-function clearRecentEntry() {
-  document.getElementById('date').innerHTML = '';
-  document.getElementById('location').innerHTML = '';
-  document.getElementById('temp').innerHTML = '';
-  document.getElementById('feels').innerHTML = '';
-  document.getElementById('content').innerHTML = '';
-  document.getElementById('error').innerHTML = '';
+export {
+  performAction,
+  getWeather,
+  postData,
+  getDate
 }
