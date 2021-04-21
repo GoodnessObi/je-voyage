@@ -1,5 +1,5 @@
 // Personal API Key for OpenWeatherMap API
-const apiKey = 'ebbd2f57d5cadca45a8ea3aa17c0b066';
+// const apiKey = 'ebbd2f57d5cadca45a8ea3aa17c0b066';
 
 /* Function called by event listener */
 function performAction (){
@@ -52,31 +52,31 @@ function performAction (){
 
 /* Function to GET Web API Data*/
 async function getWeather (){
-  try {
-    const response = await fetch('http://api.geonames.org/searchJSON?q=Lagos&country=PT&username=goodness')
-    const data = await response.json();
-    console.log('successful call made')
-    console.log('country:' + data.geonames[0].countryName + ', latitude:' + data.geonames[0].lat + ', longitude:' + data.geonames[0].lng)
-    return {latitude: data.geonames[0].lat, longitude: data.geonames[0].long}
-    // return {temp: data.main.temp, feels: data.main.feels_like, country: data.name};
-  } catch(error) {
-    // throw new Error('Data unavailabe for that zipcode');
-  }
+  // try {
+  //   const response = await fetch('http://api.geonames.org/searchJSON?q=Lagos&country=PT&username=goodness')
+  //   const data = await response.json();
+  //   console.log('successful call made')
+  //   console.log('country:' + data.geonames[0].countryName + ', latitude:' + data.geonames[0].lat + ', longitude:' + data.geonames[0].lng)
+  //   return {latitude: data.geonames[0].lat, longitude: data.geonames[0].long}
+  //   // return {temp: data.main.temp, feels: data.main.feels_like, country: data.name};
+  // } catch(error) {
+  //   // throw new Error('Data unavailabe for that zipcode');
+  // }
 }
 
 /* Function to POST data */
 async function postData ( url = '', data = {}) {
-  const response = await fetch(url, {
-    method: 'POST', 
-    credentials: 'same-origin',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    // Body data type must match "Content-Type" header        
-    body: JSON.stringify(data), 
-  });
+  // const response = await fetch(url, {
+  //   method: 'POST', 
+  //   credentials: 'same-origin',
+  //   headers: {
+  //       'Content-Type': 'application/json',
+  //   },
+  //   // Body data type must match "Content-Type" header        
+  //   body: JSON.stringify(data), 
+  // });
 
-  return response;
+  // return response;
 }
  
 function getDate() {

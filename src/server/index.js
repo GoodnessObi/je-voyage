@@ -1,5 +1,5 @@
 // Setup empty JS object to act as endpoint for all routes
-const projectData = {}
+const projectData = []
 var path = require('path')
 const express = require('express')
 const dotenv = require('dotenv');
@@ -11,7 +11,9 @@ const app = express();
 const bodyParser = require('body-parser');
 /* Middleware*/
 const geonamesBaseUrl ='http://api.geonames.org/searchJSON';
+const weatherbitBaseUrl = 'http://api.weatherbit.io/v2.0/forecast/daily'
 const geonamesKey = process.env.GEONAMES_API_KEY;
+const weatherbitKey = process.env.WEATHERBIT_API_KEY;
 //Here we are configuring express to use body-parser as middle-ware.
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -36,17 +38,18 @@ app.get('/all', sendData);
 
 // Callback function to complete GET '/all'
 function sendData(request, response) {
-  response.send(projectData);
+  // response.send(projectData);
 }
 
 // Post Route
 const data = [];
 app.post('/', function (request, response) {
-  data.push(request.body);
-  projectData['data'] = data;
-  response.send('POST recieved');
+  // data.push(request.body);
+  // projectData['data'] = data;
+  // response.send('POST recieved');
 });
 
+const location = {};
 app.post('/addData', async (req, res) => {
   console.log('body', req.body)
   try{
@@ -54,14 +57,40 @@ app.post('/addData', async (req, res) => {
           method: 'POST'
       })
       const data = await response.json();
+      const cityData = {
+        city: req.body.city,
+        country: 'NG',
+        location: {
+          latitude: data.geonames[0].lat,
+          longitude: data.geonames[0].lng
+        }
+      }
       // if (data.status.msg !== 'OK') {
       //     throw new Error(data.status.msg)
       // }
       // console.log(data, 'data');
-      console.log('result: ', data.geonames[0].lat, data.geonames[0].lng)
-      res.send(data)
+      console.log('cityData', cityData)
+      getWeather(cityData.location.latitude, cityData.location.longitude);
+      // res.send(data)
+      projectData.push(cityData);
+      console.log('projectData: ', projectData)
+      res.send('POST recieved');
   }catch(error) {
       console.log(error, 'error', error.message)
-      res.status(500).send({ error: error.message});
+      // res.status(500).send({ error: error.message});
   }
 })
+
+async function getWeather (lat, lng, city){
+  try {
+    const response = await fetch(`${weatherbitBaseUrl}?lat=${lat}&lon=${lng}&key=${weatherbitKey}`)
+    const data = await response.json();
+    console.log('successful call made')
+    console.log('data', data);
+    // console.log('country:' + data.geonames[0].countryName + ', latitude:' + data.geonames[0].lat + ', longitude:' + data.geonames[0].lng)
+    // return {latitude: data.geonames[0].lat, longitude: data.geonames[0].long}
+    // return {temp: data.main.temp, feels: data.main.feels_like, country: data.name};
+  } catch(error) {
+    // throw new Error('Data unavailabe for that zipcode');
+  }
+}
