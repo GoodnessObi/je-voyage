@@ -7,35 +7,53 @@
 </head>
  <body>
 <div id = "app">
-  <div class ="holder headline">
-    Weather Journal App
-  </div>
-  <div class ="holder zip">
-    <label for="zip">Enter City here</label>
-    <input type="text" id="city" placeholder="enter city here">
-  </div>
-  <div class ="holder zip">
-    <label for="zip">Enter Country here</label>
-    <input type="text" id="country" placeholder="enter country here here">
-  </div>
-  <div class ="holder feel">
-    <label for="feelings">How are you feeling today?</label>
-    <textarea class= "myInput" id="feelings" placeholder="Enter your feelings here" rows="9" cols="50"></textarea>
-    <button id="generate" type = "submit"> Generate </button>
-  </div>
-  <div class ="holder entry">
-    <div class = "title">Most Recent Entry</div>
-    <div id = "entryHolder">
-      <div id ="error"></div>
-      <div>Date: <span id="date"></span></div> 
-      <div>Location: <span id="location"></span></div>
-      <div>Temperature: <span id="temp"></span></div>
-      <div>Feels like: <span id="feels"></span></div>
-      <div>Feelings: <span id="content"></span></div>
+  <!-- <div class="container"> -->
+    <div class ="holder headline header">
+      Weather Journal App
     </div>
-  </div>
+    <section class="main">
+      <div class="card add-new-trip">
+        <h2>Add a trip</h2>
+        <form action="">
+          <div class="row">
+            <div class="input-group">
+              <label for="">City</label>
+              <input type="text">
+            </div>
+
+            <div class="input-group">
+              <label for="">Country</label>
+              <input type="text">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-group">
+              <label for="">Start Date</label>
+              <input type="text">
+            </div>
+
+            <div class="input-group">
+              <label for="">End Date</label>
+              <input type="text">
+            </div>
+          </div>
+
+          <div class="row">
+            <button class="cancel">Cancel</button>
+            <button>Save</button>
+          </div>
+        </form>
+      </div>
+    </section>
+    <aside>
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem totam velit eius consequuntur ipsam libero dolor minus. Modi, magnam esse?
+    </aside>
+    <footer>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus, quibusdam.
+    </footer>
+  <!-- </div> -->
 </div>
-<script src="app.js" type="text/javascript"></script>
 
 </body>
 </html>
