@@ -87,10 +87,11 @@ async function getWeather (lat, lng, city){
     const data = await response.json();
     console.log('successful call made')
     console.log('data', data);
-    // console.log('country:' + data.geonames[0].countryName + ', latitude:' + data.geonames[0].lat + ', longitude:' + data.geonames[0].lng)
     // return {latitude: data.geonames[0].lat, longitude: data.geonames[0].long}
     // return {temp: data.main.temp, feels: data.main.feels_like, country: data.name};
   } catch(error) {
     // throw new Error('Data unavailabe for that zipcode');
   }
 }
+
+
