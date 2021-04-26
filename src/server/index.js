@@ -11,9 +11,11 @@ const app = express();
 const bodyParser = require('body-parser');
 /* Middleware*/
 const geonamesBaseUrl ='http://api.geonames.org/searchJSON';
-const weatherbitBaseUrl = 'http://api.weatherbit.io/v2.0/forecast/daily'
+const weatherbitBaseUrl = 'http://api.weatherbit.io/v2.0/forecast/daily';
+const pixabayBaseUrl = 'https://pixabay.com/api/';
 const geonamesKey = process.env.GEONAMES_API_KEY;
 const weatherbitKey = process.env.WEATHERBIT_API_KEY;
+const pixabayKey = process.env.PIXABAY_API_KEY;
 //Here we are configuring express to use body-parser as middle-ware.
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -60,17 +62,24 @@ app.post('/addData', async (req, res) => {
       const cityData = {
         city: req.body.city,
         country: 'NG',
+        countryInput: 'Nigeria',
         location: {
           latitude: data.geonames[0].lat,
           longitude: data.geonames[0].lng
         }
       }
+
+      let city = cityData.city.toLowerCase();
+      let country = cityData.countryInput.toLowerCase()
+      console.log(city,country, ']]]]]]]]')
       // if (data.status.msg !== 'OK') {
       //     throw new Error(data.status.msg)
       // }
       // console.log(data, 'data');
       console.log('cityData', cityData)
       getWeather(cityData.location.latitude, cityData.location.longitude);
+      getPicture(city, country )
+
       // res.send(data)
       projectData.push(cityData);
       console.log('projectData: ', projectData)
@@ -94,4 +103,19 @@ async function getWeather (lat, lng, city){
   }
 }
 
+async function getPicture (city, country){
+  try {
+    const response = await fetch(`${pixabayBaseUrl}?key=${pixabayKey}&q=${city}+${country}&category=travel`)
+    const data = await response.json();
+    console.log('get picture call made')
+    console.log(response, pixabayKey, city, country, '>>>>>')
+    console.log('data', data);
+    // return {latitude: data.geonames[0].lat, longitude: data.geonames[0].long}
+    // return {temp: data.main.temp, feels: data.main.feels_like, country: data.name};
+  } catch(error) {
+    // throw new Error('Data unavailabe for that zipcode');
+  }
+}
 
+
+// https://pixabay.com/api/?key=21015412-05b2c00b712605e6f5cf7675b&q=lagos+nigeria&category=travel
