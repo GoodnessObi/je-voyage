@@ -6,6 +6,12 @@ function performAction (){
   // const city = document.getElementById('city').value;
   const city = 'Lagos';
   const feeling = document.getElementById('country').value;
+  const countryInput = 'Nigeria'
+
+  
+  const country = Client.getCountryCode(countryInput);
+  console.log('formhandler', country);
+
 
   console.log("::: Form Submitted :::", city) 
   fetch(`http://localhost:8000/addData`, {

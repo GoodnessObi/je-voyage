@@ -54,68 +54,68 @@ app.post('/', function (request, response) {
 const location = {};
 app.post('/addData', async (req, res) => {
   console.log('body', req.body)
+  let { city, country, countryInput, startDate, endDate } = req.body;
+
+  country = 'NG';
+  countryInput = 'Nigeria';
+  startDate = new Date('2021-05-01');
+  endDate = new Date('2021-05-07');
   try{
-      const response = await fetch (`${geonamesBaseUrl}?q=${req.body.city}&country=NG&username=${geonamesKey}`, {
+      const response = await fetch (`${geonamesBaseUrl}?q=${city}&country=${country}&username=${geonamesKey}`, {
           method: 'POST'
       })
       const data = await response.json();
       const cityData = {
-        city: req.body.city,
-        country: 'NG',
-        countryInput: 'Nigeria',
+        city,
+        country,
+        countryInput,
         location: {
           latitude: data.geonames[0].lat,
           longitude: data.geonames[0].lng
         }
       }
 
-      let city = cityData.city.toLowerCase();
-      let country = cityData.countryInput.toLowerCase()
-      console.log(city,country, ']]]]]]]]')
-      // if (data.status.msg !== 'OK') {
-      //     throw new Error(data.status.msg)
-      // }
-      // console.log(data, 'data');
+      city = city.toLowerCase();
+      countryInput = countryInput.toLowerCase()
+      console.log(city,countryInput, ']]]]]]]]')
+  
       console.log('cityData', cityData)
-      getWeather(cityData.location.latitude, cityData.location.longitude);
-      getPicture(city, country )
+      const weatherData = await getWeather(cityData.location.latitude, cityData.location.longitude, new Date(startDate), new Date(endDate));
+      const imageUrl = await getPicture(city, countryInput )
 
+      console.log(weatherData, imageUrl, '>>>>>>>>>>>')
       // res.send(data)
       projectData.push(cityData);
       console.log('projectData: ', projectData)
       res.send('POST recieved');
   }catch(error) {
       console.log(error, 'error', error.message)
-      // res.status(500).send({ error: error.message});
+      res.status(500).send({ error: error.message});
   }
 })
 
-async function getWeather (lat, lng, city){
+async function getWeather (lat, lng, startDate, endDate){
   try {
     const response = await fetch(`${weatherbitBaseUrl}?lat=${lat}&lon=${lng}&key=${weatherbitKey}`)
     const data = await response.json();
-    console.log('successful call made')
-    console.log('data', data);
-    // return {latitude: data.geonames[0].lat, longitude: data.geonames[0].long}
-    // return {temp: data.main.temp, feels: data.main.feels_like, country: data.name};
+    console.log('successful call made', endDate)
+
+    return data.data.filter(item => {
+      const validDate = new Date(item.valid_date);
+      if (item.valid_date === '2021-05-07') console.log(validDate, startDate, endDate, 'LLLLLLLLLLLLLLLL')
+      return validDate >= startDate && validDate <= endDate;
+    });
   } catch(error) {
-    // throw new Error('Data unavailabe for that zipcode');
+    throw new Error('Data unavailabe for that zipcode');
   }
 }
 
-async function getPicture (city, country){
+async function getPicture (city, country) {
   try {
     const response = await fetch(`${pixabayBaseUrl}?key=${pixabayKey}&q=${city}+${country}&category=travel`)
     const data = await response.json();
     console.log('get picture call made')
-    console.log(response, pixabayKey, city, country, '>>>>>')
-    console.log('data', data);
-    // return {latitude: data.geonames[0].lat, longitude: data.geonames[0].long}
-    // return {temp: data.main.temp, feels: data.main.feels_like, country: data.name};
   } catch(error) {
-    // throw new Error('Data unavailabe for that zipcode');
+    throw new Error('Data unavailabe for that zipcode');
   }
 }
-
-
-// https://pixabay.com/api/?key=21015412-05b2c00b712605e6f5cf7675b&q=lagos+nigeria&category=travel
