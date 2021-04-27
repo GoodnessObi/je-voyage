@@ -4,6 +4,7 @@
   "description": "a travel planning app",
   "main": "index.js",
   "scripts": {
+    "build-start": "npm run build && npm run start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/server/index.js",
     "build": "webpack --config webpack.prod.js",
