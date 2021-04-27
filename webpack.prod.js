@@ -28,8 +28,20 @@ module.exports = {
         use: [ 'style-loader', 'css-loader', 'sass-loader' ]
       },
       {
+        test: /\.(svg|png)$/,
+        use: [
+          {
+            loader: 'url-loader'
+          }
+        ]
+      },
+      {
         test: /\.scss$/,
         use: [ MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader' ],
+      },
+      {
+        test: /\.scss$/,
+        use: 'webpack-import-glob-loader'
       }
     ]
   },

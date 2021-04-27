@@ -2,14 +2,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
 <title>Weather Journal</title>
-<link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
+
 </head>
  <body>
 <div id = "app">
   <!-- <div class="container"> -->
-    <div class ="holder headline header">
-      Weather Journal App
+    <div class ="header">
+      <div class="logo">
+        <img alt="le-voyageur" id="logo">
+      </div>
+      <!-- Weather Journal App -->
     </div>
     <section class="main">
       <div class="card add-new-trip">
@@ -44,6 +51,42 @@
             <button>Save</button>
           </div>
         </form>
+      </div>
+      <div class="card">
+        <div class="image-wrapper">
+          <img alt="placeholder" id="placeholder">
+        </div>
+        <div class="trip-details">
+          <div>
+            <h4>My trip to: <span class="">Lagos, </span><span class="">Nigeria</span></h4>
+            <p>Duration of trip: <span>04-04-2021</span> to <br> <span>08-04-2021</span></p>
+            <p><a href="">view weather forecast</a></p>
+            <div class="weather-report">
+              <ul>
+                <li>
+                  <i><img alt="sunny" id="sunny"></i> <span class="date">04-04-2021:</span>
+                  <span>Sunny</span>
+                </li>
+                <li>
+                  <i><img alt="sunny" id="snowy"></i> <span class="date">05-04-2021:</span>
+                  <span>Snowy</span>
+                </li>
+                <li>
+                  <i><img alt="sunny" id="windy"></i> <span class="date">06-04-2021:</span>
+                  <span>Partly cloudy</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <button class="cancel">
+            Remove
+          </button>
+          <button>
+            Add New Trip
+          </button>
+        </div>
       </div>
     </section>
     <aside>

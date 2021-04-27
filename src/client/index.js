@@ -13,10 +13,26 @@ import './styles/footer.scss';
 import './styles/form.scss';
 import './styles/header.scss';
 import './styles/resets.scss';
-import './styles/result.scss';
+import './styles/card.scss';
+import './styles/_variables.scss';
+
+import logo from './media/logo.png';
+import placeholder from './media/placeholder.png'
+import sunnyIcon from './media/icons/weather-sunny.svg' 
+import rainyIcon from './media/icons/weather-rainy.svg'
+import partlyCloudy from './media/icons/weather-partly-cloudy.svg'
+
+
+document.getElementById('logo').src = logo;
+document.getElementById('placeholder').src = placeholder;
+document.getElementById('sunny').src = sunnyIcon;
+document.getElementById('snowy').src = rainyIcon;
+document.getElementById('windy').src = partlyCloudy;
 
 // Event listener to add function to existing HTML DOM element
 document.getElementById('generate').addEventListener('click', performAction);
+
+
 
 export {
   performAction,
