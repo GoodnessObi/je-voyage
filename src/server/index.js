@@ -40,38 +40,38 @@ app.get('/all', sendData);
 
 // Callback function to complete GET '/all'
 function sendData(request, response) {
-  // response.send(projectData);
+  response.send(projectData);
 }
 
-// Post Route
-const data = [];
-app.post('/', function (request, response) {
-  // data.push(request.body);
-  // projectData['data'] = data;
-  // response.send('POST recieved');
-});
+// // Post Route
+// const data = [];
+// app.post('/', function (request, response) {
+//   // data.push(request.body);
+//   // projectData['data'] = data;
+//   // response.send('POST recieved');
+// });
 
 const location = {};
 app.post('/addData', async (req, res) => {
   console.log('body', req.body)
-  let { city, country, countryInput, startDate, endDate } = req.body;
+  let { city, country, countryInput, tripStart, tripEnd } = req.body;
 
-  country = 'NG';
-  countryInput = 'Nigeria';
-  startDate = new Date('2021-05-01');
-  endDate = new Date('2021-05-07');
+  tripStart = new Date(tripStart);
+  tripEnd = new Date(tripEnd);
   try{
       const response = await fetch (`${geonamesBaseUrl}?q=${city}&country=${country}&username=${geonamesKey}`, {
           method: 'POST'
       })
       const data = await response.json();
+      const latitude = data.geonames[0].lat;
+      const longitude = data.geonames[0].lng;
       const cityData = {
         city,
         country,
         countryInput,
         location: {
-          latitude: data.geonames[0].lat,
-          longitude: data.geonames[0].lng
+          latitude,
+          longitude
         }
       }
 
@@ -80,31 +80,48 @@ app.post('/addData', async (req, res) => {
       console.log(city,countryInput, ']]]]]]]]')
   
       console.log('cityData', cityData)
-      const weatherData = await getWeather(cityData.location.latitude, cityData.location.longitude, new Date(startDate), new Date(endDate));
+      debugger;
+      const weatherData = await getWeather(latitude, longitude, tripStart, tripEnd);
+
       const imageUrl = await getPicture(city, countryInput )
 
-      console.log(weatherData, imageUrl, '>>>>>>>>>>>')
-      // res.send(data)
+      cityData.imageUrl = imageUrl || '';
+      cityData.weatherData = weatherData;
+
+      console.log(weatherData, '}}}}}}}}}')
+      console.log(imageUrl, '>>>>>>>>>>>')
+    
       projectData.push(cityData);
-      console.log('projectData: ', projectData)
-      res.send('POST recieved');
+      // console.log('projectData: ', projectData)
+      res.send(projectData);
   }catch(error) {
       console.log(error, 'error', error.message)
       res.status(500).send({ error: error.message});
   }
 })
 
-async function getWeather (lat, lng, startDate, endDate){
+async function getWeather (lat, lng, tripStart, tripEnd){
   try {
     const response = await fetch(`${weatherbitBaseUrl}?lat=${lat}&lon=${lng}&key=${weatherbitKey}`)
     const data = await response.json();
-    console.log('successful call made', endDate)
+    console.log('successful call made', tripEnd)
 
-    return data.data.filter(item => {
+    const filteredData = data.data.filter(item => {
       const validDate = new Date(item.valid_date);
-      if (item.valid_date === '2021-05-07') console.log(validDate, startDate, endDate, 'LLLLLLLLLLLLLLLL')
-      return validDate >= startDate && validDate <= endDate;
+      if (item.valid_date === '2021-05-07') console.log(validDate, tripStart, tripEnd, 'LLLLLLLLLLLLLLLL')
+      return validDate >= tripStart && validDate <= tripEnd;
     });
+
+    const weatherPerDay = filteredData.map(dataItem => ({
+      validDate: dataItem.valid_date,
+      pop: dataItem.pop, 
+      snow: dataItem.snow, 
+      temp: dataItem.temp, 
+      weatherDescription: dataItem.weather.description
+    }));
+    console.log()
+
+    return weatherPerDay;
   } catch(error) {
     throw new Error('Data unavailabe for that zipcode');
   }
@@ -115,7 +132,16 @@ async function getPicture (city, country) {
     const response = await fetch(`${pixabayBaseUrl}?key=${pixabayKey}&q=${city}+${country}&category=travel`)
     const data = await response.json();
     console.log('get picture call made')
+    return data.hits[0].webformatURL;
   } catch(error) {
     throw new Error('Data unavailabe for that zipcode');
   }
 }
+
+// // Initialize all route with a callback function
+// app.get('/all', sendData);
+
+// // Callback function to complete GET '/all'
+// function sendData(request, response) {
+//   response.send(projectData);
+// }

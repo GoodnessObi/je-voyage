@@ -2,7 +2,7 @@ import { performAction } from './js/formHandler';
 import { clearRecentEntry } from './js/viewHandler';
 import { clearInputFields } from './js/viewHandler';
 import { getDate } from './js/formHandler';
-import { getWeather } from './js/formHandler';
+// import { getWeather } from './js/formHandler';
 import { postData } from './js/formHandler';
 import { updateUI } from './js/viewHandler';
 import { getCountryCode } from './js/countryHandler';
@@ -30,7 +30,7 @@ document.getElementById('snowy').src = rainyIcon;
 document.getElementById('windy').src = partlyCloudy;
 
 // Event listener to add function to existing HTML DOM element
-document.getElementById('generate').addEventListener('click', performAction);
+document.getElementById('submit').addEventListener('click', performAction);
 
 
 
@@ -40,7 +40,7 @@ export {
   clearInputFields,
   updateUI,
   getDate,
-  getWeather,
+  // getWeather,
   postData,
   getCountryCode
 }

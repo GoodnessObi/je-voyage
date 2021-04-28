@@ -1,21 +1,6 @@
 /* Function to GET Project Data */
-async function updateUI() {
-  const response = await fetch('/all');
-  try {
-      const newData = await response.json();
-      const dataArray = newData.data
-      const recentEntry = dataArray.pop();
-      const date = Client.getDate();
-
-      document.getElementById('date').innerHTML = date;
-      document.getElementById('location').innerHTML = recentEntry.country;
-      document.getElementById('temp').innerHTML = recentEntry.temp;
-      document.getElementById('feels').innerHTML = recentEntry.feels;
-      document.getElementById('content').innerHTML = recentEntry.feeling;
-      
-  } catch(error) {
-      console.log('error', error);
-  }
+function updateUI(data) {
+  console.log('time for an update',data)
 }
 
 function clearInputFields() {
