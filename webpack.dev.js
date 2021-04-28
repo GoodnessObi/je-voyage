@@ -29,10 +29,6 @@ module.exports = {
             loader: 'url-loader'
           }
         ]
-      },
-      {
-        test: /\.scss$/,
-        use: 'webpack-import-glob-loader'
       }
     ]
   },

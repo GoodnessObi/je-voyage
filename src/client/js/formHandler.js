@@ -4,16 +4,15 @@
 /* Function called by event listener */
 function performAction (){
   // const city = document.getElementById('city').value;
-  const city = 'Lagos';
-  const feeling = document.getElementById('country').value;
-  const countryInput = 'Nigeria'
+  const formInput = {
+    city: document.getElementById('city').value,
+    country: Client.getCountryCode(countryInput);
+    countryInput: document.getElementById('country').value,
+    tripStart: document.getElementById('start').value,
+    tripEnd: document.getElementById('end').value,
+  }
 
-  
-  const country = Client.getCountryCode(countryInput);
-  console.log('formhandler', country);
-
-
-  console.log("::: Form Submitted :::", city) 
+  console.log("::: Form Submitted :::", formInput) 
   fetch(`http://localhost:8000/addData`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
