@@ -1,6 +1,20 @@
+@import '_variables.scss';
+
 .header {
+  background: url(../media/background.png);
+  background-size: 100% 100%;
   #logo {
     width: 100px;
     height: auto;
+    position: sticky;
+  }
+
+  @media(max-width: $medium-screen) {
+    background-size: cover;
+    background-position: center;
+
+    #logo {
+      width: 80px;
+    }
   }
 }

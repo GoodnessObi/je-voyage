@@ -11,58 +11,63 @@ body{
 }
 
 #app{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    grid-auto-rows: minmax(30px, auto);
+    display: flex;
+    flex-direction: column;
     min-height:100vh;
-    width: 80%;
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     color: $primary-color;
-    grid-gap: 10px;
     font-family: inherit;
+    background: $background-color;
+    margin: auto;
 
     .header {
-        grid-column: 1 / 4;
-        grid-row: 1;
-        border: 1px solid red;
+        width: 100%;
+        min-height: 50vh;
+        // border: 1px solid red;
         padding: 20px;
     }
 
     .main {
-        grid-column: 1 / 3;
-        grid-row: 2;
-        border: 1px solid red;
+        width: 100%;
+        height: auto;
+        margin: auto;
+        // border: 1px solid red;
         padding: 20px;
         .card {
-            background: #F5FAFF;
+            background: #fff;
             padding: 20px;
-            width: 80%;
-            margin: 20px auto;
-            border-radius: 4px;
+            width: 70%;
+            border-radius: 25px;
+            margin: 0 auto;
+            border: 1px solid $secondary-color;
 
+            &:not(:first-child) {
+                margin: 20px auto;
+            }
 
             h2 {
                 font-family: $heading-font;
             }
 
             form {
-                padding: 15px;
+                padding: 0 15px 15px 15px;
             }
 
             .row {
                 display: flex;
                 flex-flow: row wrap;
                 justify-content: space-between;
-                margin: 20px 0;
+
+                &.btn-wrapper {
+                    margin-top: 15px;
+                    justify-content: flex-end;
+                }
 
                 .input-group {
                     width: 45%;
-                }
-
-                &:last-child {
-                    justify-content: flex-end;
+                    margin-top: 15px;
                 }
 
                 @media(max-width: $medium-screen) {
@@ -72,41 +77,17 @@ body{
                 }
             }
 
-            @media(max-width: $medium-screen) {
+            @media(max-width: $small-screen) {
                width: 100%;
             }
         }
     }
 
-    aside {
-        grid-column: 3/ 4;
-        grid-row: 2;
-        border: 1px solid red;
-        padding: 20px;
-        background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #D9EDFF;
-    }
 
     footer {
-        grid-column: 1/ 4;
-        grid-row: 3;
-        border: 1px solid red;
+        width: 100%;
+        // border: 1px solid red;
         padding: 20px;
-    }
-    
-    @media(max-width: $large-screen) {
-        .main {
-            grid-column: 1 / 4;
-            grid-row: 2;
-        }
-
-        aside {
-            grid-column: 1 / 4;
-            grid-row: 3;
-        }
-
-        footer {
-            grid-row: 4;
-        }
     }
 
     @media(max-width: $small-screen) {
@@ -132,6 +113,10 @@ button{
 
     &.cancel {
         background: #741f1f;
+    }
+
+    &.save {
+        color: $primary-color;
     }
 }
 h1{

@@ -4,99 +4,60 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
-<title>Weather Journal</title>
+<title>Le Voyageur</title>
 
 </head>
  <body>
 <div id = "app">
-  <!-- <div class="container"> -->
-    <div class ="header">
-      <div class="logo">
-        <img alt="le-voyageur" id="logo">
-      </div>
-      <!-- Weather Journal App -->
+  <div class ="header">
+    <div class="logo">
+      <img alt="le-voyageur" id="logo">
     </div>
-    <section class="main">
-      <div class="card add-new-trip">
-        <h2>Add a trip</h2>
-        <form action="">
-          <div class="row">
-            <div class="input-group">
-              <label for="">City</label>
-              <input type="text" id="city" placeholder="California">
-            </div>
-
-            <div class="input-group">
-              <label for="">Country</label>
-              <input type="text" placeholder="USA" id="country">
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="input-group">
-              <label for="">Start Date</label>
-              <input type="date" id="start" name="trip-start" value="2021-03-01" min="2021-03-01" max="2021-12-31" required>
-            </div>
-
-            <div class="input-group">
-              <label for="">End Date</label>
-              <input type="date" id="end" name="trip-end" value="2021-03-11" min="2021-03-11" max="2021-12-31" required>
-            </div>
-          </div>
-
-          <div class="row">
-            <button class="cancel">Cancel</button>
-            <button id="submit">Submit</button>
-          </div>
-        </form>
-      </div>
-      <div class="card">
-        <div class="image-wrapper">
-          <img alt="placeholder" id="placeholder">
-        </div>
-        <div class="trip-details">
-          <div>
-            <h4>My trip to: <span class="">Lagos, </span><span class="">Nigeria</span></h4>
-            <p>Duration of trip: <span>04-04-2021</span> to <br> <span>08-04-2021</span></p>
-            <p><a href="">view weather forecast</a></p>
-            <div class="weather-report">
-              <ul>
-                <li>
-                  <i><img alt="sunny" id="sunny"></i> <span class="date">04-04-2021:</span>
-                  <span>Sunny</span>
-                </li>
-                <li>
-                  <i><img alt="sunny" id="snowy"></i> <span class="date">05-04-2021:</span>
-                  <span>Snowy</span>
-                </li>
-                <li>
-                  <i><img alt="sunny" id="windy"></i> <span class="date">06-04-2021:</span>
-                  <span>Partly cloudy</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
+  </div>
+  <section class="main">
+    <div class="card add-new-trip">
+      <h2>Add a trip</h2>
+      <form action="">
         <div class="row">
-          <button class="cancel">
-            Remove
-          </button>
-          <button>
-            Add New Trip
-          </button>
-        </div>
-      </div>
-    </section>
-    <aside>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem totam velit eius consequuntur ipsam libero dolor minus. Modi, magnam esse?
-    </aside>
-    <footer>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus, quibusdam.
-    </footer>
-  <!-- </div> -->
-</div>
+          <div class="input-group">
+            <label for="">City</label>
+            <input type="text" id="city" placeholder="California">
+          </div>
 
+          <div class="input-group">
+            <label for="">Country</label>
+            <input type="text" placeholder="USA" id="country">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-group">
+            <label for="">Start Date</label>
+            <input type="date" id="start" name="trip-start" value="2021-03-01" min="2021-03-01" max="2021-12-31" required>
+          </div>
+
+          <div class="input-group">
+            <label for="">End Date</label>
+            <input type="date" id="end" name="trip-end" value="2021-03-11" min="2021-03-11" max="2021-12-31" required>
+          </div>
+        </div>
+
+        <div class="row btn-wrapper">
+          <button class="cancel">Cancel</button>
+          <button id="submit" class="save">Submit</button>
+        </div>
+      </form>
+    </div>
+    <div class="response-card card" id="card-wrapper">
+    </div>
+  </section>
+  <footer>
+    <div class="logo">
+      <img alt="le-voyageur" id="footer-logo">
+      <span>&copy; Goodness Obi for Udacity, 2021.</span>
+    </div>
+  </footer>
+</div>
 </body>
 </html>
