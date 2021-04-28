@@ -1,0 +1,30 @@
+@import '_variables.scss';
+
+.card:not(.add-new-trip) {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+
+  .image-wrapper {
+    width: 49%;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .trip-details {
+    width: 49%;
+  }
+
+  .row {
+    width: 100%;
+  }
+
+  @media(max-width: $medium-screen) {
+    .image-wrapper,
+    .trip-details {
+      width: 100%;
+    }
+}
+}

@@ -1,111 +1,125 @@
+@import '_variables.scss';
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 body{
-    background: #fffff8;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #fff;
+    font-family: $body-font;  
 }
 
 #app{
-    display: grid;
-    grid-auto-rows: minmax(150px, auto);
-    /* grid-template-columns:  */
+    display: flex;
+    flex-direction: column;
     min-height:100vh;
-    background: #f23557;
-    color: #f0d43a;
-    justify-content: center;
-    grid-gap: 1em;
-    font-size: 20px;
-    font-family: 'Oswald', sans-serif;
-}
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: $primary-color;
+    font-family: inherit;
+    background: $background-color;
+    margin: auto;
 
-.holder{
+    .header {
+        width: 100%;
+        min-height: 50vh;
+        // border: 1px solid red;
+        padding: 20px;
+    }
 
-}
+    .main {
+        width: 100%;
+        height: auto;
+        margin: auto;
+        // border: 1px solid red;
+        padding: 20px;
+        .card {
+            background: #fff;
+            padding: 20px;
+            width: 70%;
+            border-radius: 25px;
+            margin: 0 auto;
+            border: 1px solid $secondary-color;
 
-.entry{
-    background: rgba(59, 74, 107, .4);
-}
+            &:not(:first-child) {
+                margin: 20px auto;
+            }
 
-#entryHolder{
+            h2 {
+                font-family: $heading-font;
+            }
 
-}
+            form {
+                padding: 0 15px 15px 15px;
+            }
 
-#date{
+            .row {
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: space-between;
 
-}
+                &.btn-wrapper {
+                    margin-top: 15px;
+                    justify-content: flex-end;
+                }
 
-#temp{
+                .input-group {
+                    width: 45%;
+                    margin-top: 15px;
+                }
 
-}
+                @media(max-width: $medium-screen) {
+                    .input-group {
+                        width: 100%;
+                    }
+                }
+            }
 
-#content{
+            @media(max-width: $small-screen) {
+               width: 100%;
+            }
+        }
+    }
 
-}
 
-.headline {
+    footer {
+        width: 100%;
+        // border: 1px solid red;
+        padding: 20px;
+    }
 
-}
-.title{
-
+    @media(max-width: $small-screen) {
+        width: 100%;
+    }
 }
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
-label{
-    display:block;
-    font-size: 27px;
-}
 
-input{
-    display:block;
-    height: 60px;
-    width: 320px;
-    background:#22b2da;
-    color: #f0d43a;
-    font-size: 20px;
-    font-family: 'Oswald', sans-serif;
-    border: none;
-}
 
 button{
-    width: 400px;
-    height: 100px;
-    background: #3b4a6b;
-    color: #f0d43a;
-    font-size: 26px;
-    font-family: 'Oswald', sans-serif;
+    // width: 400px;
+    // height: 100px;
+    background: $secondary-color;
+    padding: 5px 15px;
+    color: #fff;
+    font-size: 14px;
+    font-family: $body-font;
     border: none;
-    box-shadow: 2px 4px 5px #444;
+    margin-left: 15px;
+    border-radius: 4px;
+    // box-shadow: 2px 4px 5px #444;
+
+    &.cancel {
+        background: #741f1f;
+    }
+
+    &.save {
+        color: $primary-color;
+    }
 }
 h1{
     font-size: 36px;
 }
 
-textarea{
-    background:#22b2da;
-    color: #f0d43a;
-    font-size: 20px;
-    font-family: 'Oswald', sans-serif;
-}
-/* Reset style for HTML element on active to have no border*/
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-    outline: none;
-}
-/* Style for Placeholder Text*/
-::placeholder { /* Firefox, Chrome, Opera */ 
-    color: #f0d43a; 
-    font-family: 'Oswald', sans-serif;
-
-} 
-  
-:-ms-input-placeholder { /* Internet Explorer 10-11 */ 
-    color: #f0d43a; 
-    font-family: 'Oswald', sans-serif;
-
-} 
-  
-::-ms-input-placeholder { /* Microsoft Edge */ 
-    color: #f0d43a; 
-    font-family: 'Oswald', sans-serif;
-
-} 

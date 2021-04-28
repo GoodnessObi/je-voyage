@@ -9,7 +9,13 @@ module.exports = {
   devtool: 'source-map',
   output: {
     libraryTarget:'var',
-    library:'Client'
+    library:'Client',
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    clean: true,
+  },
+  devServer: {
+    contentBase: './dist',
   },
   module: {
     rules: [
@@ -21,13 +27,22 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [ 'style-loader', 'css-loader', 'sass-loader' ]
+      },
+      {
+        test: /\.(svg|png)$/,
+        use: [
+          {
+            loader: 'url-loader'
+          }
+        ]
       }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/client/views/index.html',
-      filename: './index.html'
+      filename: './index.html',
+      title: 'Development'
     }),
     new CleanWebpackPlugin({
       // Simulate the removal of files

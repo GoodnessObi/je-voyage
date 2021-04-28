@@ -247,8 +247,7 @@ const countries = {
 }
 
 function getCountryCode(countryInput) {
-  const asArray = Object.entries(countries)
-  console.log(asArray);
+  const asArray = Object.entries(countries);
   const countryCode = asArray.filter(([code, country]) => {
     if (countryInput === country) {
       return code;
