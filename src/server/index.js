@@ -72,14 +72,16 @@ app.post('/addData', async (req, res) => {
         location: {
           latitude,
           longitude
-        }
+        },
+        tripStart: tripStart.toDateString(),
+        tripEnd: tripEnd.toDateString()
       }
 
       city = city.toLowerCase();
       countryInput = countryInput.toLowerCase()
       console.log(city,countryInput, ']]]]]]]]')
   
-      console.log('cityData', cityData)
+      
       debugger;
       const weatherData = await getWeather(latitude, longitude, tripStart, tripEnd);
 
@@ -92,6 +94,7 @@ app.post('/addData', async (req, res) => {
       console.log(imageUrl, '>>>>>>>>>>>')
     
       projectData.push(cityData);
+      console.log('cityData', cityData)
       // console.log('projectData: ', projectData)
       res.send(projectData);
   }catch(error) {

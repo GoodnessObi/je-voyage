@@ -1,9 +1,8 @@
 import { performAction } from './js/formHandler';
 import { clearRecentEntry } from './js/viewHandler';
 import { clearInputFields } from './js/viewHandler';
-import { weatherUI } from './js/viewHandler';
+// import { weatherUI } from './js/viewHandler';
 import { buildUI } from './js/viewHandler';
-import { buttonUI } from './js/viewHandler';
 import { getDate } from './js/formHandler';
 import { postData } from './js/formHandler';
 import { updateUI } from './js/viewHandler';
@@ -45,9 +44,7 @@ export {
   clearInputFields,
   updateUI,
   getDate,
-  buttonUI,
   buildUI,
-  weatherUI,
   postData,
   getCountryCode
 }
