@@ -5,62 +5,52 @@ function updateUI(res) {
   const wrapper = document.getElementById('card-wrapper')
 
   res.forEach((data) => {
-    console.log(data, ']]]]]');
-    const card = document.createElement('div').className = 'card';
+    // console.log(data, ']]]]]');
+    const card = document.createElement('div');
+    card.className = ' card';
+
     const builtUI = buildUI(data);
-   
-    card.appendChild(builtUI);
+    card.innerHTML = builtUI;
     wrapper.appendChild(card)
+    console.log(card, 'final product');
   })
-  
-}
-
-function weatherUI (weatherData) {
-  const ul = document.createElement('ul');
-  weatherData.forEach((datum)=> {
-    const markupUI = 
-      `<li class = "weather">
-        <i></i> <span class="date">${datum.validDate}:</span>
-        <span>${datum.weatherDescription}</span>
-      </li>`
-      ul.appendChild(markupUI);
-  })
-  return ul;
-}
-
-function buttonUI () {
-  markupButton = 
-  `<div class="row">
-    <button class="cancel">
-      Remove
-    </button>
-    <button>
-      Add New Trip
-    </button>
-  </div>
-  `
-  return markupButton;
 }
 
 function buildUI (data) {
-  const ul = weatherUI(data.weatherData);
-  const buttons = buttonUI();
-  const cardFragment = document.createDocumentFragment();
+  console.log(data.weatherData, 'weather')
+  const cardDiv = document.createElement('div');
+  
   const markup = 
     `<div class="image-wrapper">
-      <img alt="placeholder" id="placeholder" src="${data.imageURL}">
+      <img alt="placeholder" id="placeholder" src="${data.imageUrl}">
     </div>
     <div class="trip-details">
       <div>
         <h4>My trip to: <span class="">${data.city}, </span><span class="">${data.countryInput}</span></h4>
-        <p>Duration of trip: <span>${data.startTrip}</span> to <br> <span>${data.endTrip}</span></p>
+        <p>Duration of trip: <span>${data.tripStart}</span> to <br> <span>${data.tripEnd}</span></p>
         <p><a href="">view weather forecast</a></p>
       </div>
+      <ul>
+      ${data.weatherData.map(datum => (
+        `<li class = "weather">
+          <i></i> <span class="date">${datum.validDate}:</span>
+          <span>${datum.weatherDescription}</span>
+        </li>`
+      ))}
+      </ul>
+      <div class="row btn-wrapper">
+        <button class="cancel">
+          Remove
+        </button>
+        <button>
+          Add New Trip
+        </button>
+      </div>
     </div>
-    `
-    console.log(markup, 'mk')
-  const builtUI = cardFragment.appendChild(markup);
-  // .appendChild(ul).appendChild(buttons)
+  `
+  // console.log(ul);
+  const builtUI = cardDiv.innerHTML = markup
+  console.log(builtUI, '>>>>>')
   return builtUI;
 }
 
@@ -82,7 +72,5 @@ export {
   clearInputFields,
   clearRecentEntry,
   updateUI,
-  weatherUI,
-  buildUI,
-  buttonUI
+  buildUI
 }
