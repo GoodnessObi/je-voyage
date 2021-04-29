@@ -1,5 +1,5 @@
 {
-  "name": "je-voyage",
+  "name": "le-voyageur",
   "version": "1.0.0",
   "description": "a travel planning app",
   "main": "index.js",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GoodnessObi/je-voyage.git"
+    "url": "git+https://github.com/GoodnessObi/le-voyageur.git"
   },
   "author": "GoodnessObi",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/GoodnessObi/je-voyage/issues"
+    "url": "https://github.com/GoodnessObi/le-voyageur/issues"
   },
-  "homepage": "https://github.com/GoodnessObi/je-voyage#readme",
+  "homepage": "https://github.com/GoodnessObi/le-voyageur#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
