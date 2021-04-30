@@ -3,18 +3,48 @@
 .header {
   background: url(../media/background.png);
   background-size: 100% 100%;
-  #logo {
-    width: 100px;
-    height: auto;
-    position: sticky;
+  display: flex;
+  position: relative;
+  justify-content: center;
+
+  .text-wrapper {
+    width: 80%;
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    h1 {
+      color: $lv-orange;
+      font-size: 50px;
+    }
+    
+    p {
+      font-size: 36px;
+    }
+  }
+
+  .card {
+    background: #E2E9F2;
+    width: 80%;
+    max-width: 1200px;
+    margin: auto;
+    position: absolute;
+    bottom: 60px;
+    padding: 20px;
+    border-radius: 50px;
+    border: 1px solid $lv-green;
+
+    form {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
   }
 
   @media(max-width: $medium-screen) {
     background-size: cover;
     background-position: center;
-
-    #logo {
-      width: 80px;
-    }
   }
 }

@@ -15,18 +15,16 @@ body{
     flex-direction: column;
     min-height:100vh;
     width: 100%;
-    max-width: 1200px;
+    // max-width: 1500px;
     margin: 0 auto;
-    color: $primary-color;
+    color: $lv-blue;
     font-family: inherit;
-    background: $background-color;
+    background: #CCCCCC;
     margin: auto;
 
     .header {
         width: 100%;
-        min-height: 50vh;
-        // border: 1px solid red;
-        padding: 20px;
+        min-height: 100vh;
     }
 
     .main {
@@ -34,18 +32,18 @@ body{
         height: auto;
         margin: auto;
         // border: 1px solid red;
-        padding: 20px;
+        // padding: 20px;
         .card {
-            background: #fff;
-            padding: 20px;
-            width: 70%;
-            border-radius: 25px;
-            margin: 0 auto;
-            border: 1px solid $secondary-color;
+            // background: #F3F7FB;
+            // padding: 20px;
+            // width: 70%;
+            // border-radius: 25px;
+            // margin: 0 auto;
+            // border: 1px solid ;
 
-            &:not(:first-child) {
-                margin: 20px auto;
-            }
+            // &:not(:first-child) {
+            //     margin: 20px auto;
+            // }
 
             h2 {
                 font-family: $heading-font;
@@ -83,13 +81,6 @@ body{
         }
     }
 
-
-    footer {
-        width: 100%;
-        // border: 1px solid red;
-        padding: 20px;
-    }
-
     @media(max-width: $small-screen) {
         width: 100%;
     }
@@ -101,7 +92,7 @@ body{
 button{
     // width: 400px;
     // height: 100px;
-    background: $secondary-color;
+    background: $lv-green;
     padding: 5px 15px;
     color: #fff;
     font-size: 14px;
@@ -112,11 +103,7 @@ button{
     // box-shadow: 2px 4px 5px #444;
 
     &.cancel {
-        background: #741f1f;
-    }
-
-    &.save {
-        color: $primary-color;
+        background: $lv-orange;
     }
 }
 h1{

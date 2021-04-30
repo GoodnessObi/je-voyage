@@ -26,7 +26,7 @@ import rainyIcon from './media/icons/weather-rainy.svg'
 import partlyCloudy from './media/icons/weather-partly-cloudy.svg'
 
 
-document.getElementById('logo').src = logo;
+// document.getElementById('logo').src = logo;
 document.getElementById('footer-logo').src = logo;
 // document.getElementById('placeholder').src = placeholder;
 // document.getElementById('sunny').src = sunnyIcon;
