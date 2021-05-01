@@ -4,7 +4,7 @@
   background: url(../media/background.png);
   background-size: 100% 100%;
   display: flex;
-  position: relative;
+  flex-direction: column;
   justify-content: center;
 
   .text-wrapper {
@@ -21,7 +21,17 @@
     }
     
     p {
-      font-size: 36px;
+      font-size: 40px;
+    }
+
+    @media(max-width: $small-screen) {
+      h1 {
+        font-size: 36px;
+      }
+      
+      p {
+        font-size: 30px;
+      }
     }
   }
 
@@ -30,20 +40,58 @@
     width: 80%;
     max-width: 1200px;
     margin: auto;
-    position: absolute;
-    bottom: 60px;
     padding: 20px;
     border-radius: 50px;
     border: 1px solid $lv-green;
+    font-size: 14px;
 
     form {
       display: flex;
-      flex-direction: row;
+      flex-flow: row wrap;
       justify-content: space-between;
+      padding: 20px;
+      align-items: flex-end;
+
+      .input-group:not(:last-child) {
+        display: flex;
+        flex-direction: column;
+        width: 20%;
+        justify-content: space-between;
+        
+        label {
+          margin-bottom: 5px;
+        }
+
+        input {
+          width: 100%;
+          padding: 5px;
+        }
+      }
+
+      @media(max-width: $medium-screen) {
+        .input-group:not(:last-child) {
+          width: 49%;
+          margin-top: 10px;
+        }
+        
+        .input-group:last-child {
+          margin-top: 20px;
+          width: 100%;
+          display: flex;
+          justify-content: flex-end;
+        }
+      }
+
+      @media(max-width: $small-screen) {
+        .input-group:not(:last-child) {
+          width: 100%;
+        }
+      }
+  
     }
   }
 
-  @media(max-width: $medium-screen) {
+  @media(max-width: $large-screen) {
     background-size: cover;
     background-position: center;
   }

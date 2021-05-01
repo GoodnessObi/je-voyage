@@ -4,6 +4,7 @@ footer {
   padding: 10px;
   background: $lv-orange;
   color: #124936;
+  font-size: 14px;
 
   .logo {
     max-width: 1200px;
@@ -17,10 +18,12 @@ footer {
       height: auto;
   
       @media(max-width: $medium-screen) { 
-        #footer-logo {
-          width: 80px;
-        }
+        width: 80px;
       }
     }
+  }
+
+  @media(max-width: $small-screen) {
+   font-size: 12px;
   }
 }

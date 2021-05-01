@@ -1,112 +1,96 @@
 @import '_variables.scss';
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
+
 body{
-    background: #fff;
-    font-family: $body-font;  
+  background: #fff;
+  font-family: $body-font;  
 }
 
 #app{
-    display: flex;
-    flex-direction: column;
-    min-height:100vh;
+  display: flex;
+  flex-direction: column;
+  min-height:100vh;
+  width: 100%;
+  margin: 0 auto;
+  color: $lv-blue;
+  font-family: inherit;
+  background: #CCCCCC;
+  margin: auto;
+
+  .header {
     width: 100%;
-    // max-width: 1500px;
-    margin: 0 auto;
-    color: $lv-blue;
-    font-family: inherit;
-    background: #CCCCCC;
+    min-height: 100vh;
+  }
+
+  .main {
+    width: 100%;
+    height: auto;
     margin: auto;
+    .card {
+      h2 {
+        font-family: $heading-font;
+      }
 
-    .header {
-        width: 100%;
-        min-height: 100vh;
-    }
+      form {
+        padding: 0 15px 15px 15px;
+      }
 
-    .main {
-        width: 100%;
-        height: auto;
-        margin: auto;
-        // border: 1px solid red;
-        // padding: 20px;
-        .card {
-            // background: #F3F7FB;
-            // padding: 20px;
-            // width: 70%;
-            // border-radius: 25px;
-            // margin: 0 auto;
-            // border: 1px solid ;
+      .row {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
 
-            // &:not(:first-child) {
-            //     margin: 20px auto;
-            // }
-
-            h2 {
-                font-family: $heading-font;
-            }
-
-            form {
-                padding: 0 15px 15px 15px;
-            }
-
-            .row {
-                display: flex;
-                flex-flow: row wrap;
-                justify-content: space-between;
-
-                &.btn-wrapper {
-                    margin-top: 15px;
-                    justify-content: flex-end;
-                }
-
-                .input-group {
-                    width: 45%;
-                    margin-top: 15px;
-                }
-
-                @media(max-width: $medium-screen) {
-                    .input-group {
-                        width: 100%;
-                    }
-                }
-            }
-
-            @media(max-width: $small-screen) {
-               width: 100%;
-            }
+        &.btn-wrapper {
+          margin-top: 15px;
+          justify-content: flex-end;
         }
-    }
 
-    @media(max-width: $small-screen) {
+        .input-group {
+          width: 45%;
+          margin-top: 15px;
+        }
+
+        @media(max-width: $medium-screen) {
+          .input-group {
+            width: 100%;
+          }
+        }
+      }
+
+      @media(max-width: $small-screen) {
         width: 100%;
+      }
     }
+  }
+
+  @media(max-width: $small-screen) {
+    width: 100%;
+  }
 }
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
 
 
 button{
-    // width: 400px;
-    // height: 100px;
-    background: $lv-green;
-    padding: 5px 15px;
-    color: #fff;
-    font-size: 14px;
-    font-family: $body-font;
-    border: none;
-    margin-left: 15px;
-    border-radius: 4px;
-    // box-shadow: 2px 4px 5px #444;
+  background: $lv-green;
+  padding: 5px 15px;
+  color: #fff;
+  font-size: 14px;
+  font-family: $body-font;
+  border: none;
+  margin-left: 15px;
+  border-radius: 4px;
 
-    &.cancel {
-        background: $lv-orange;
-    }
+  &.cancel {
+    background: $lv-orange;
+  }
 }
 h1{
-    font-size: 36px;
+  font-size: 36px;
 }
 
