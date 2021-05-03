@@ -7,8 +7,8 @@
 }
 
 body{
-  background: #fff;
-  font-family: $body-font;  
+  font-family: $body-font;
+  
 }
 
 #app{
@@ -19,57 +19,62 @@ body{
   margin: 0 auto;
   color: $lv-blue;
   font-family: inherit;
-  background: #CCCCCC;
+  background: #fff;
   margin: auto;
 
   .header {
     width: 100%;
-    min-height: 100vh;
+    // min-height: 100vh;
+    min-height: 50vh;
   }
 
   .main {
-    width: 100%;
+    width: 80%;
+    max-width: 1200px;
     height: auto;
     margin: auto;
-    .card {
-      h2 {
-        font-family: $heading-font;
-      }
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding: 50px 0;
 
-      form {
-        padding: 0 15px 15px 15px;
-      }
+    .response-card {
+      width: 69%;
+      // border: 1px solid #004A2F;
+      // padding: 20px;
+      border-radius: 40px;
+    }
 
-      .row {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-between;
+    aside {
+      width: 29%;
+      background: #E2E9F2;
+      // border: 1px solid #004A2F;
+      box-sizing: border-box;
+      border-radius: 40px;
+      padding: 20px;
+      text-align: center;
+      min-height: 300px;
+    }
 
-        &.btn-wrapper {
-          margin-top: 15px;
-          justify-content: flex-end;
-        }
-
-        .input-group {
-          width: 45%;
-          margin-top: 15px;
-        }
-
-        @media(max-width: $medium-screen) {
-          .input-group {
-            width: 100%;
-          }
-        }
-      }
-
-      @media(max-width: $small-screen) {
+    @media(max-width: $medium-screen) {
+      .response-card {
         width: 100%;
+      }
+  
+      aside {
+        width: 100%;
+        min-height: auto;
+        margin-top: 20px;
       }
     }
   }
 
   @media(max-width: $small-screen) {
     width: 100%;
+
+    .main {
+      width: 90%;
+    }
   }
 }
 

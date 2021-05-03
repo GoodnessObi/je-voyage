@@ -1,30 +1,104 @@
 @import '_variables.scss';
 
-.card:not(.add-new-trip) {
-  // display: flex;
-  // flex-flow: row wrap;
-  // justify-content: space-between;
-
-  .image-wrapper {
-    width: 49%;
-
-    img {
-      width: 100%;
+.main {
+  .card {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    background: #E2E9F2;
+    margin-bottom: 50px;
+    border-radius: 40px;
+    padding: 20px;
+    position: relative;
+  
+    .image-wrapper {
+      width: 49%;
+  
+      img {
+        width: 100%;
+        border-radius: 40px;
+      }
     }
-  }
-
-  .trip-details {
-    width: 49%;
-  }
-
-  .row {
-    width: 100%;
-  }
-
-  @media(max-width: $medium-screen) {
-    .image-wrapper,
+  
     .trip-details {
+      width: 49%;
+
+      span.city {
+        text-transform: capitalize;
+      }
+
+      div {
+        padding: 10px 0;
+      }
+  
+      ul {
+        list-style-type: none;
+        display: none;
+
+        li {
+          display: flex;
+          align-items: center;
+          padding: 5px 0;
+
+          .date {
+            margin-right: 5px;
+          }
+
+          i {
+            margin-right: 5px;
+
+            img {
+              width: 50px;
+            }
+          }
+
+          .display-block {
+            display: block;
+          }
+        }
+      }
+
+      .btn-wrapper {
+        margin-top: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+  
+    .row {
       width: 100%;
     }
-}
+
+    .countdown {
+      position: absolute;
+      background: $lv-yellow;
+      border-radius: 50%;
+      padding: 5px;
+      top: -40px;
+      right: -15px;
+      min-height: 100px;
+      min-width: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    h4,
+    h5 {
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 5px;
+    }
+  
+    @media(max-width: $small-screen) {
+      .image-wrapper,
+      .trip-details {
+        width: 100%;
+      }
+    }
+  }
 }
