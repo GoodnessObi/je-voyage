@@ -21,6 +21,7 @@ function updateUI(res) {
 function buildUI (data) {
   console.log(data.weatherData, 'weather')
   const cardDiv = document.createElement('div');
+  const timeTillTrip = countdownTimer(data.tripStart)
   
   const markup = 
     `<div class="image-wrapper">
@@ -49,8 +50,7 @@ function buildUI (data) {
       </div>
     </div>
     <div class="countdown">
-      <p><span></span>
-      <br> to your trip!</p>
+      <p id="countdown">${timeTillTrip}</p>
     </div>
   `
   // console.log(ul);
@@ -77,6 +77,43 @@ function clearRecentEntry() {
 function toggleDisplay(e) {
   e.preventDefaault();
   document.querySelector('ul').classList.toggle("display-block");
+}
+
+function countdownTimer(startDate) {
+  // Set the date we're counting down to
+  console.log('std', startDate);
+  const countDownDate = new Date(startDate).getTime();
+
+  console.log('ctd',countDownDate)
+  // Update the count down every 1 second
+  const x = setInterval(function() {
+
+  // Get today's date and time
+  const now = new Date().getTime();
+
+  console.log('now', now)
+    
+  // Find the distance between now and the count down date
+  const distance = countDownDate - now;
+
+  console.log('dist', distance)
+    
+  // Time calculations for days, hours, minutes and seconds
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  // const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  // const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  // console.log('days', d);
+  document.getElementById("countdown").innerHTML = `Your trip is in ${days}d ${hours}h`;
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("countdown").innerHTML = "Your trip is today!!!";
+  }
+}, 1000);
 }
 
 

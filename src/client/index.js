@@ -15,7 +15,7 @@ import './styles/footer.scss';
 import './styles/form.scss';
 import './styles/header.scss';
 import './styles/resets.scss';
-import './styles/card.scss';
+import './styles/main.scss';
 import './styles/_variables.scss';
 
 import './media/background.png';
@@ -32,7 +32,7 @@ import placeholderTwo from './media/background.png'
 document.getElementById('footer-logo').src = logo;
 document.getElementById('placeholder').src = placeholder;
 document.getElementById('placeholder-two').src = placeholderTwo;
-document.getElementById('placeholder-three').src = placeholder;
+// document.getElementById('placeholder-three').src = placeholder;
 
 // document.getElementById('sunny').src = sunnyIcon;
 // document.getElementById('snowy').src = rainyIcon;
