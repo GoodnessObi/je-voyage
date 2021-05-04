@@ -1,7 +1,6 @@
 import { performAction } from './js/formHandler';
 import { clearRecentEntry } from './js/viewHandler';
 import { clearInputFields } from './js/viewHandler';
-// import { weatherUI } from './js/viewHandler';
 import { buildUI } from './js/viewHandler';
 import { getDate } from './js/formHandler';
 import { postData } from './js/formHandler';
@@ -10,37 +9,17 @@ import { getCountryCode } from './js/countryHandler';
 import { toggleDisplay } from './js/viewHandler';
 
 import './styles/base.scss';
-import './styles/error.scss';
-import './styles/footer.scss';
-import './styles/form.scss';
-import './styles/header.scss';
-import './styles/resets.scss';
-import './styles/main.scss';
-import './styles/_variables.scss';
 
 import './media/background.png';
 
 import logo from './media/logo.png';
-import placeholder from './media/placeholder.png'
-import placeholderTwo from './media/background.png'
-// import sunnyIcon from './media/icons/weather-sunny.svg' 
-// import rainyIcon from './media/icons/weather-rainy.svg'
-// import partlyCloudy from './media/icons/weather-partly-cloudy.svg'
 
-
-// document.getElementById('logo').src = logo;
 document.getElementById('footer-logo').src = logo;
-document.getElementById('placeholder').src = placeholder;
-document.getElementById('placeholder-two').src = placeholderTwo;
-// document.getElementById('placeholder-three').src = placeholder;
 
-// document.getElementById('sunny').src = sunnyIcon;
-// document.getElementById('snowy').src = rainyIcon;
-// document.getElementById('windy').src = partlyCloudy;
 
 // Event listener to add function to existing HTML DOM element
 document.getElementById('submit').addEventListener('click', performAction);
-document.querySelector('.view-weather').addEventListener('click', toggleDisplay);
+// document.querySelector('.view-weather').addEventListener('click', toggleDisplay);
 
 
 
