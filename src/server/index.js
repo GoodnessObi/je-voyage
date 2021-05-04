@@ -77,7 +77,6 @@ app.post('/addData', async (req, res) => {
         tripEnd: tripEnd.toDateString()
       }
 
-      city = city.toLowerCase();
       countryInput = countryInput.toLowerCase()
       console.log(city,countryInput, ']]]]]]]]')
   
@@ -120,7 +119,8 @@ async function getWeather (lat, lng, tripStart, tripEnd){
       pop: dataItem.pop, 
       snow: dataItem.snow, 
       temp: dataItem.temp, 
-      weatherDescription: dataItem.weather.description
+      weatherDescription: dataItem.weather.description,
+      icon: dataItem.weather.icon
     }));
     console.log()
 

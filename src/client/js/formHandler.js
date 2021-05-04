@@ -6,9 +6,10 @@ function performAction (e){
   e.preventDefault();
   console.log('In here!!!')
 
-  const countryInput = document.getElementById('country').value;
+  const countryInput = document.querySelector('.country').value;
+  const city = document.getElementById('city').value.trim().toLowerCase()
   const formInput = {
-    city: document.getElementById('city').value,
+    city,
     countryInput,
     country: Client.getCountryCode(countryInput),
     tripStart: document.getElementById('start').value,
