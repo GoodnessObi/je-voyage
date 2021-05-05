@@ -1,6 +1,5 @@
 /* Function to GET Project Data */
 function updateUI(res) {
-  // console.log('time for an update',res)
   const wrapper = document.getElementById('card-wrapper')
   wrapper.innerHTML='';
 
@@ -12,30 +11,29 @@ function updateUI(res) {
     const builtUI = buildUI(data);
     card.innerHTML = builtUI;
     wrapper.appendChild(card)
-    // console.log(card, 'final product');
   })
   document.querySelectorAll('.view-weather').forEach(element => element.addEventListener('click', toggleDisplay))
 }
 
 
 function buildUI (data) {
-  console.log(data.id, 'data')
   const cardDiv = document.createElement('div');
-  // var idStr = element.id; // Get the id
-  // Set the id
-  // cardDiv.setAttribute('id', data.id)
-   
+  
   const markup = 
     `<div class="image-wrapper">
       <img alt="placeholder" id="placeholder" src="${data.imageUrl}">
     </div>
     <div class="trip-details">
       <div>
-        <h4>My trip to: <span class="city">${data.city}, </span><span class="">${data.countryInput}</span></h4>
-        <p>Duration of trip: <span>${data.tripStart}</span> to <br> <span>${data.tripEnd}</span></p>
+        <h3>My trip to: <span class="city">${data.city}, </span><span class="">${data.countryInput}</span></h3>
+        <div class="trip-duration">
+          <p>Duration of trip: </p>
+          <p>${data.tripStart} - ${data.tripEnd}</p>
+        </div>
+        <p>Length of trip: <span>${tripLength(data.tripStart, data.tripEnd)}</span>days</p>
       </div>
       <div>
-        <h5>Weather Forecast <a href="#" class="view-weather">Click to view</a></h5>
+        <h4>Weather Forecast <a href="#" class="view-weather">Click to view</a></h4>
         <ul>
         ${data.weatherData.map(datum => (
           `<li class = "weather">
@@ -45,11 +43,6 @@ function buildUI (data) {
         )).join('')}
         </ul>
       </div>
-      <div class="row btn-wrapper">
-        <button class="cancel">
-          Remove
-        </button>
-      </div>
     </div>
     <div class="countdown">
       <p class="countdown-text"></p>
@@ -58,34 +51,23 @@ function buildUI (data) {
   
   const builtUI = cardDiv.innerHTML = markup;
   countdownTimer(data.tripStart, data.id);
-  // console.log(setCountdown, 'timer')
- 
+  
   return builtUI;
 }
 
 function clearInputFields() {
-  document.getElementById('zip').value = '';
-  document.getElementById('feelings').value = '';
+  document.getElementById('city').value = '';
+  document.getElementById('autoComplete').value = '';
+  document.getElementById('start').value = '';
+  document.getElementById('end').value = '';
 }
-
-function clearRecentEntry() {
-  document.getElementById('date').innerHTML = '';
-  document.getElementById('location').innerHTML = '';
-  document.getElementById('temp').innerHTML = '';
-  document.getElementById('feels').innerHTML = '';
-  document.getElementById('content').innerHTML = '';
-  document.getElementById('error').innerHTML = '';
-}
-
 
 function toggleDisplay(e) {
   e.preventDefault();
-  console.log('clicked', e)
   e.target.parentElement.nextElementSibling.classList.toggle("display-block");
 }
 
 function countdownTimer(startDate, id) {
-
   const countDownDate = new Date(startDate).getTime();
   const x = setInterval(function() {
     const countdownTarget = document.getElementById(id).lastElementChild.lastElementChild;
@@ -106,11 +88,22 @@ function countdownTimer(startDate, id) {
   }, 1000);
 }
 
+function tripLength(startDate, endDate) {
+  const start = new Date(startDate).getTime();
+  const end = new Date(endDate).getTime();
+
+  const timeDifference = end-start;
+  const lengthOfTrip = Math.floor(timeDifference/(1000 * 60 * 60 * 24));
+  console.log(lengthOfTrip)
+  
+  return lengthOfTrip
+}
+
 
 export {
   clearInputFields,
-  clearRecentEntry,
   updateUI,
   buildUI,
-  toggleDisplay
+  toggleDisplay,
+  tripLength
 }

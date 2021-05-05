@@ -1,0 +1,28 @@
+#autoComplete_list {
+  background: #E2E9F2;
+  list-style: none;
+  padding: 10px 0;
+  color: $lv-blue;
+  position: absolute;
+  width: 100%;
+  top: 51px;
+  z-index: 100;
+
+  li {
+    margin: 3px 0;
+    padding: 5px 10px;
+    cursor: pointer;
+
+    &:hover,
+    &.autoComplete_selected {
+      background: $lv-blue;
+      color: #E2E9F2;
+    }
+
+    span.autoComplete_highlighted {
+      color: $lv-orange;
+    }
+
+
+  }
+}

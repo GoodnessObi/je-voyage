@@ -1,0 +1,12 @@
+#error-wrapper {
+  &.card {
+    text-align: center;
+    color: $lv-green;
+    display: block;
+  
+    #error {
+      width: 60%;
+      margin: 20px 0;
+    }
+  }
+}
