@@ -1,6 +1,5 @@
 /* Function to GET Project Data */
 function updateUI(res) {
-  // console.log('time for an update',res)
   const wrapper = document.getElementById('card-wrapper')
   wrapper.innerHTML='';
 
@@ -55,19 +54,11 @@ function buildUI (data) {
 }
 
 function clearInputFields() {
-  document.getElementById('zip').value = '';
-  document.getElementById('feelings').value = '';
+  document.getElementById('city').value = '';
+  document.getElementById('autoComplete').value = '';
+  document.getElementById('start').value = '';
+  document.getElementById('end').value = '';
 }
-
-function clearRecentEntry() {
-  document.getElementById('date').innerHTML = '';
-  document.getElementById('location').innerHTML = '';
-  document.getElementById('temp').innerHTML = '';
-  document.getElementById('feels').innerHTML = '';
-  document.getElementById('content').innerHTML = '';
-  document.getElementById('error').innerHTML = '';
-}
-
 
 function toggleDisplay(e) {
   e.preventDefault();
@@ -76,7 +67,6 @@ function toggleDisplay(e) {
 }
 
 function countdownTimer(startDate, id) {
-
   const countDownDate = new Date(startDate).getTime();
   const x = setInterval(function() {
     const countdownTarget = document.getElementById(id).lastElementChild.lastElementChild;
@@ -100,7 +90,6 @@ function countdownTimer(startDate, id) {
 
 export {
   clearInputFields,
-  clearRecentEntry,
   updateUI,
   buildUI,
   toggleDisplay

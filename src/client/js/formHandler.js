@@ -13,7 +13,7 @@ function performAction (e){
     tripEnd: document.getElementById('end').value,
   }
 
-  console.log("::: Form Submitted :::", formInput) 
+  console.log('::: Form Submitted :::', formInput) 
   fetch(`http://localhost:8000/addData`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -21,60 +21,34 @@ function performAction (e){
   })
   .then(res => res.json())
   .then(function(res) {
-      console.log('Yo!!!!')
       if (res.error) {
           throw new Error(res.error);
       }
 
       Client.updateUI(res);
-      
-      // Client.clearUI();
-      // document.getElementById('name').value = '';
-      // document.querySelector('.results').classList.add("fadeIn");
-      // document.getElementById('url').innerHTML = formText;
-      // document.getElementById('confidence').innerHTML = res.confidence.toLowerCase();
-      // document.getElementById('agreement').innerHTML = res.agreement.toLowerCase();
-      // document.getElementById('irony').innerHTML = res.irony.toLowerCase();
-      // document.getElementById('subjective').innerHTML = res.subjectivity.toLowerCase();
+      Client.clearInputFields();
   })
   .catch(error => {
       console.log(error)
-      // Client.clearUI();
-      // document.querySelector('#error').classList.add("fadeIn");
+      Client.handleError();
   })
-  
-  // Client.clearRecentEntry();
-  // getWeather(apiKey, zipCode)
-  //   .then(function(data) {
-  //     return postData('/', {...data, feeling})
-  //   })
-  //   .then(function(){
-  //     return Client.updateUI();
-  //   }).then(function() {
-  //     return Client.clearInputFields();
-  //   })
-  //   .catch(function(error) {
-  //     document.getElementById('error').innerHTML = error.message;
-    // })
 }
 
-
-/* Function to POST data */
-async function postData ( url = '', data = {}) {
-  // const response = await fetch(url, {
-  //   method: 'POST', 
-  //   credentials: 'same-origin',
-  //   headers: {
-  //       'Content-Type': 'application/json',
-  //   },
-  //   // Body data type must match "Content-Type" header        
-  //   body: JSON.stringify(data), 
-  // });
-
-  // return response;
+function handleError() {
+  const parent = document.getElementById('card-wrapper');
+  console.log(parent);
+ 
+  const errorMarkup = 
+  `<div id="error-wrapper" class="card">
+  <p>Oops!!! Something went wrong</p>
+  <p>We can't find the information you need</p>
+  <p>Try again</p>
+  </div>
+  `
+  parent.innerHTML= errorMarkup;
 }
 
-export {
+export { 
   performAction,
-  postData
-}
+  handleError
+ }

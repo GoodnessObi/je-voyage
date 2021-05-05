@@ -1,17 +1,11 @@
 import autoComplete from "@tarekraafat/autocomplete.js";
-import { performAction } from './js/formHandler';
-import { postData } from './js/formHandler';
-import { clearRecentEntry } from './js/viewHandler';
-import { clearInputFields } from './js/viewHandler';
-import { buildUI } from './js/viewHandler';
-import { updateUI } from './js/viewHandler';
+import { performAction, handleError } from './js/formHandler';
+import { clearInputFields, buildUI, updateUI, toggleDisplay } from './js/viewHandler';
 import { getCountryCode, getCountryNames } from './js/countryHandler';
-import { toggleDisplay } from './js/viewHandler';
-
 import './styles/base.scss';
-
 import './media/background.png';
 import logo from './media/logo.png';
+// import error from './media/error.svg'
 
 document.getElementById('footer-logo').src = logo;
 
@@ -51,11 +45,10 @@ document.getElementById('submit').addEventListener('click', performAction);
 export {
   autoComplete,
   performAction,
-  clearRecentEntry,
+  handleError,
   clearInputFields,
   updateUI,
   buildUI,
-  postData,
   getCountryCode,
   toggleDisplay,
 }
