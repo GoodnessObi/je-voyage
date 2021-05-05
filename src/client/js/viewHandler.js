@@ -11,14 +11,12 @@ function updateUI(res) {
     const builtUI = buildUI(data);
     card.innerHTML = builtUI;
     wrapper.appendChild(card)
-    // console.log(card, 'final product');
   })
   document.querySelectorAll('.view-weather').forEach(element => element.addEventListener('click', toggleDisplay))
 }
 
 
 function buildUI (data) {
-  console.log(data.id, 'data')
   const cardDiv = document.createElement('div');
   
   const markup = 
@@ -62,7 +60,6 @@ function clearInputFields() {
 
 function toggleDisplay(e) {
   e.preventDefault();
-  console.log('clicked', e)
   e.target.parentElement.nextElementSibling.classList.toggle("display-block");
 }
 

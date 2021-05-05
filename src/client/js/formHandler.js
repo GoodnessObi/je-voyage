@@ -1,8 +1,7 @@
 /* Function called by event listener */
 function performAction (e){
   e.preventDefault();
-  console.log('In here!!!')
-
+  
   const countryInput = document.querySelector('.country').value;
   const city = document.getElementById('city').value.trim().toLowerCase()
   const formInput = {
@@ -13,7 +12,6 @@ function performAction (e){
     tripEnd: document.getElementById('end').value,
   }
 
-  console.log('::: Form Submitted :::', formInput) 
   fetch(`http://localhost:8000/addData`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -29,14 +27,12 @@ function performAction (e){
       Client.clearInputFields();
   })
   .catch(error => {
-      console.log(error)
       Client.handleError();
   })
 }
 
 function handleError() {
   const parent = document.getElementById('card-wrapper');
-  console.log(parent);
  
   const errorMarkup = 
   `<div id="error-wrapper" class="card">

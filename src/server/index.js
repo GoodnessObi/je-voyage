@@ -30,7 +30,6 @@ app.use(express.static('dist'));
 const port = process.env.PORT || 8000;
 // Callback to debug
 const listening = () => {
-  console.log('server running');
   console.log(`running on localhost: ${port}`);
 }
 const server = app.listen(port, listening);
@@ -45,7 +44,6 @@ function sendData(request, response) {
 }
 
 app.post('/addData', async (req, res) => {
-  console.log('body', req.body)
   let { city, country, countryInput, tripStart, tripEnd } = req.body;
 
   tripStart = new Date(tripStart);
@@ -71,26 +69,18 @@ app.post('/addData', async (req, res) => {
       }
 
       countryInput = countryInput.toLowerCase()
-      console.log(city,countryInput, ']]]]]]]]')
-  
-      
-      debugger;
-      const weatherData = await getWeather(latitude, longitude, tripStart, tripEnd);
 
+      const weatherData = await getWeather(latitude, longitude, tripStart, tripEnd);
       const imageUrl = await getPicture(city, countryInput )
 
       cityData.imageUrl = imageUrl || '';
       cityData.weatherData = weatherData;
-
-      console.log(weatherData, '}}}}}}}}}')
-      console.log(imageUrl, '>>>>>>>>>>>')
     
       projectData.push(cityData);
-      console.log('cityData', cityData)
-      // console.log('projectData: ', projectData)
+      console.log('projectData', projectData);
       res.send(projectData);
   }catch(error) {
-      console.log(error, 'error', error.message)
+      // console.log(error, 'error', error.message)
       res.status(500).send({ error: error.message});
   }
 })
@@ -99,11 +89,10 @@ async function getWeather (lat, lng, tripStart, tripEnd){
   try {
     const response = await fetch(`${weatherbitBaseUrl}?lat=${lat}&lon=${lng}&key=${weatherbitKey}`)
     const data = await response.json();
-    console.log('successful call made', tripEnd)
 
     const filteredData = data.data.filter(item => {
       const validDate = new Date(item.valid_date);
-      if (item.valid_date === '2021-05-07') console.log(validDate, tripStart, tripEnd, 'LLLLLLLLLLLLLLLL')
+      if (item.valid_date === '2021-05-07');
       return validDate >= tripStart && validDate <= tripEnd;
     });
 
@@ -115,7 +104,6 @@ async function getWeather (lat, lng, tripStart, tripEnd){
       weatherDescription: dataItem.weather.description,
       icon: dataItem.weather.icon
     }));
-    console.log()
 
     return weatherPerDay;
   } catch(error) {
@@ -127,7 +115,6 @@ async function getPicture (city, country) {
   try {
     const response = await fetch(`${pixabayBaseUrl}?key=${pixabayKey}&q=${city}+${country}&category=travel`)
     const data = await response.json();
-    console.log('get picture call made')
     return data.hits[0].webformatURL;
   } catch(error) {
     throw new Error('Data unavailabe for that zipcode');

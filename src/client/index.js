@@ -32,7 +32,6 @@ new autoComplete({
       }
   },
   onSelection: (feedback) => {
-    console.log(feedback.selection.value);
     document.getElementById('autoComplete').value = feedback.selection.value;
   }
 });
