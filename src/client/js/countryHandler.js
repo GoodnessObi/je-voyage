@@ -256,24 +256,4 @@ function getCountryCode(countryInput) {
   return countryCode[0][0]
 }
 
-// [[Ng: nigeria]]
 export { getCountryCode };
-
-
-// const numWins = {
-//   'BUF': 11,
-//   'MIA': 9,
-//   'NE': 6,
-//   'NYJ': 1
-// };
-
-// // Convert `numWins` to a key/value array
-// // `[['BUF', 11], ['MIA', 9], ...]`
-// const asArray = Object.entries(numWins);
-
-// // Use `filter()` to filter the key/value array
-// const atLeast9Wins = asArray.filter(([key, value]) => value >= 9);
-
-// // Convert the key/value array back to an object:
-// // `{ 'BUF': 11, 'MIA': 9 }`
-// const atLeast9WinsObject = Object.fromEntries(atLeast9Wins);

@@ -20,6 +20,7 @@ The following depencies are required by the app during developmment
 * [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin)
 * [css-loader](https://www.npmjs.com/package/css-loader)
 * [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin)
+* [jest](https://jestjs.io/)
 * [mini-css-extract-plugin](https://www.npmjs.com/package/mini-css-extract-plugin)
 * [node-sass](https://www.npmjs.com/package/node-sass)
 * [optimize-css-assets-webpack-plugin](https://www.npmjs.com/package/optimize-css-assets-webpack-plugin)
@@ -30,6 +31,7 @@ The following depencies are required by the app during developmment
 * [webpack](https://www.npmjs.com/package/webpack)
 * [webpack-cli](https://www.npmjs.com/package/webpack-cli)
 * [webpack-dev-server](https://www.npmjs.com/package/webpack-dev-server)
+* [workbox-webpack-plugin](https://www.npmjs.com/package/workbox-webpack-plugin)
 ### Dependencies
 * [@tarekraafat/autocomplete.js](https://tarekraafat.github.io/autoComplete.js/#/)
 * [body-parser](https://www.npmjs.com/package/body-parser)
