@@ -256,4 +256,11 @@ function getCountryCode(countryInput) {
   return countryCode[0][0]
 }
 
-export { getCountryCode };
+function getCountryNames() {
+  return Object.values(countries)
+}
+
+export { 
+  getCountryCode,
+  getCountryNames
+};

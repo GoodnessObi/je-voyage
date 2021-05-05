@@ -1,6 +1,3 @@
-// Personal API Key for OpenWeatherMap API
-// const apiKey = 'ebbd2f57d5cadca45a8ea3aa17c0b066';
-
 /* Function called by event listener */
 function performAction (e){
   e.preventDefault();
@@ -76,15 +73,8 @@ async function postData ( url = '', data = {}) {
 
   // return response;
 }
- 
-function getDate() {
-  let d = new Date();
-  let newDate = d.getMonth()+1 +'.'+ d.getDate()+'.'+ d.getFullYear();
-  return newDate;
-}
 
 export {
   performAction,
-  postData,
-  getDate
+  postData
 }

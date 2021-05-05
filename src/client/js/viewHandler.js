@@ -21,21 +21,18 @@ function updateUI(res) {
 function buildUI (data) {
   console.log(data.id, 'data')
   const cardDiv = document.createElement('div');
-  // var idStr = element.id; // Get the id
-  // Set the id
-  // cardDiv.setAttribute('id', data.id)
-   
+  
   const markup = 
     `<div class="image-wrapper">
       <img alt="placeholder" id="placeholder" src="${data.imageUrl}">
     </div>
     <div class="trip-details">
       <div>
-        <h4>My trip to: <span class="city">${data.city}, </span><span class="">${data.countryInput}</span></h4>
+        <h3>My trip to: <span class="city">${data.city}, </span><span class="">${data.countryInput}</span></h3>
         <p>Duration of trip: <span>${data.tripStart}</span> to <br> <span>${data.tripEnd}</span></p>
       </div>
       <div>
-        <h5>Weather Forecast <a href="#" class="view-weather">Click to view</a></h5>
+        <h4>Weather Forecast <a href="#" class="view-weather">Click to view</a></h4>
         <ul>
         ${data.weatherData.map(datum => (
           `<li class = "weather">
@@ -45,11 +42,6 @@ function buildUI (data) {
         )).join('')}
         </ul>
       </div>
-      <div class="row btn-wrapper">
-        <button class="cancel">
-          Remove
-        </button>
-      </div>
     </div>
     <div class="countdown">
       <p class="countdown-text"></p>
@@ -58,8 +50,7 @@ function buildUI (data) {
   
   const builtUI = cardDiv.innerHTML = markup;
   countdownTimer(data.tripStart, data.id);
-  // console.log(setCountdown, 'timer')
- 
+  
   return builtUI;
 }
 

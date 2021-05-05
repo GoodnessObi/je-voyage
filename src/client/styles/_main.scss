@@ -46,13 +46,22 @@
             margin-right: 5px;
 
             img {
-              width: 50px;
+              width: 30px;
             }
           }
         }
 
         &.display-block {
           display: block;
+        }
+      }
+
+      .view-weather {
+        color: $lv-yellow;
+        font-size: 14px;
+
+        &:hover {
+          color: $lv-orange;
         }
       }
 
