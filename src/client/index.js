@@ -19,7 +19,6 @@ document.getElementById('footer-logo').src = logo;
 
 // Event listener to add function to existing HTML DOM element
 document.getElementById('submit').addEventListener('click', performAction);
-// document.querySelector('.view-weather').addEventListener('click', toggleDisplay);
 
 
 

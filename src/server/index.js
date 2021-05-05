@@ -4,6 +4,7 @@ var path = require('path')
 const express = require('express')
 const dotenv = require('dotenv');
 const fetch = require('node-fetch');
+const { v4: uuidv4 } = require('uuid');
 dotenv.config();
 // Start up an instance of app
 const app = express();
@@ -43,15 +44,6 @@ function sendData(request, response) {
   response.send(projectData);
 }
 
-// // Post Route
-// const data = [];
-// app.post('/', function (request, response) {
-//   // data.push(request.body);
-//   // projectData['data'] = data;
-//   // response.send('POST recieved');
-// });
-
-const location = {};
 app.post('/addData', async (req, res) => {
   console.log('body', req.body)
   let { city, country, countryInput, tripStart, tripEnd } = req.body;
@@ -74,7 +66,8 @@ app.post('/addData', async (req, res) => {
           longitude
         },
         tripStart: tripStart.toDateString(),
-        tripEnd: tripEnd.toDateString()
+        tripEnd: tripEnd.toDateString(),
+        id: uuidv4()
       }
 
       countryInput = countryInput.toLowerCase()

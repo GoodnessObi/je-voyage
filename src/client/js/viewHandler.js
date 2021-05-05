@@ -2,26 +2,29 @@
 function updateUI(res) {
   // console.log('time for an update',res)
   const wrapper = document.getElementById('card-wrapper')
-  // const prevData = document.getElementsByClassName('.card')
-  // console.log('prev', prevData);
-  // prevData.remove();
+  wrapper.innerHTML='';
 
   res.forEach((data) => {
     const card = document.createElement('div');
     card.className = ' card';
+    card.id = data.id;
 
     const builtUI = buildUI(data);
     card.innerHTML = builtUI;
     wrapper.appendChild(card)
     // console.log(card, 'final product');
   })
+  document.querySelectorAll('.view-weather').forEach(element => element.addEventListener('click', toggleDisplay))
 }
 
+
 function buildUI (data) {
-  console.log(data.weatherData, 'weather')
+  console.log(data.id, 'data')
   const cardDiv = document.createElement('div');
-  const timeTillTrip = countdownTimer(data.tripStart)
-  
+  // var idStr = element.id; // Get the id
+  // Set the id
+  // cardDiv.setAttribute('id', data.id)
+   
   const markup = 
     `<div class="image-wrapper">
       <img alt="placeholder" id="placeholder" src="${data.imageUrl}">
@@ -32,7 +35,7 @@ function buildUI (data) {
         <p>Duration of trip: <span>${data.tripStart}</span> to <br> <span>${data.tripEnd}</span></p>
       </div>
       <div>
-        <h5>Weather Forecast <span class="view-weather">Click to view</span></h5>
+        <h5>Weather Forecast <a href="#" class="view-weather">Click to view</a></h5>
         <ul>
         ${data.weatherData.map(datum => (
           `<li class = "weather">
@@ -49,11 +52,13 @@ function buildUI (data) {
       </div>
     </div>
     <div class="countdown">
-      <p id="countdown">${timeTillTrip}</p>
+      <p class="countdown-text"></p>
     </div>
   `
-
-  const builtUI = cardDiv.innerHTML = markup
+  
+  const builtUI = cardDiv.innerHTML = markup;
+  countdownTimer(data.tripStart, data.id);
+  // console.log(setCountdown, 'timer')
  
   return builtUI;
 }
@@ -74,40 +79,31 @@ function clearRecentEntry() {
 
 
 function toggleDisplay(e) {
-  e.preventDefaault();
-  document.querySelector('ul').classList.toggle("display-block");
+  e.preventDefault();
+  console.log('clicked', e)
+  e.target.parentElement.nextElementSibling.classList.toggle("display-block");
 }
 
-function countdownTimer(startDate) {
-  // Set the date we're counting down to
-  console.log('std', startDate);
+function countdownTimer(startDate, id) {
+
   const countDownDate = new Date(startDate).getTime();
-
-  console.log('ctd',countDownDate)
-  // Update the count down every 1 second
   const x = setInterval(function() {
-
-  // Get today's date and time
-  const now = new Date().getTime();
-
-  console.log('now', now)
-    
-  // Find the distance between now and the count down date
-  const distance = countDownDate - now;
-
-  console.log('dist', distance)
-    
-  // Time calculations for days, hours, minutes and seconds
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  document.getElementById("countdown").innerHTML = `Your trip is in ${days}d ${hours}h`;
-    
-  // If the count down is over, write some text 
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("countdown").innerHTML = "Your trip is today!!!";
-  }
-}, 1000);
+    const countdownTarget = document.getElementById(id).lastElementChild.lastElementChild;
+    // Get today's date and time
+    const now = new Date().getTime();
+    // Find the distance between now and the count down date
+    const distance = countDownDate - now;
+    // Time calculations for days, hours, minutes and seconds
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      
+    // If the count down is over, write some text 
+    if (distance < 0) {
+      clearInterval(x);
+      countdownTarget.textContent = "Your trip is today!!!";
+    } 
+    countdownTarget.textContent = `Your trip is in ${days}d ${hours}h`;
+  }, 1000);
 }
 
 
