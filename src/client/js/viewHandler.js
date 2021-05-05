@@ -26,7 +26,11 @@ function buildUI (data) {
     <div class="trip-details">
       <div>
         <h3>My trip to: <span class="city">${data.city}, </span><span class="">${data.countryInput}</span></h3>
-        <p>Duration of trip: <span>${data.tripStart}</span> to <br> <span>${data.tripEnd}</span></p>
+        <div class="trip-duration">
+          <p>Duration of trip: </p>
+          <p>${data.tripStart} - ${data.tripEnd}</p>
+        </div>
+        <p>Length of trip: <span>${tripLength(data.tripStart, data.tripEnd)}</span>days</p>
       </div>
       <div>
         <h4>Weather Forecast <a href="#" class="view-weather">Click to view</a></h4>
@@ -84,10 +88,22 @@ function countdownTimer(startDate, id) {
   }, 1000);
 }
 
+function tripLength(startDate, endDate) {
+  const start = new Date(startDate).getTime();
+  const end = new Date(endDate).getTime();
+
+  const timeDifference = end-start;
+  const lengthOfTrip = Math.floor(timeDifference/(1000 * 60 * 60 * 24));
+  console.log(lengthOfTrip)
+  
+  return lengthOfTrip
+}
+
 
 export {
   clearInputFields,
   updateUI,
   buildUI,
-  toggleDisplay
+  toggleDisplay,
+  tripLength
 }

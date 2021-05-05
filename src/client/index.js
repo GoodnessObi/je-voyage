@@ -1,6 +1,6 @@
 import autoComplete from "@tarekraafat/autocomplete.js";
 import { performAction, handleError } from './js/formHandler';
-import { clearInputFields, buildUI, updateUI, toggleDisplay } from './js/viewHandler';
+import { clearInputFields, buildUI, updateUI, toggleDisplay, tripLength } from './js/viewHandler';
 import { getCountryCode, getCountryNames } from './js/countryHandler';
 import './styles/base.scss';
 import './media/background.png';
@@ -50,4 +50,5 @@ export {
   buildUI,
   getCountryCode,
   toggleDisplay,
+  tripLength
 }
